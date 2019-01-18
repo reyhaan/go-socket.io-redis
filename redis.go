@@ -98,6 +98,10 @@ func Redis(opts map[string]string) socketio.BroadcastAdaptor {
   return b
 }
 
+func (b broadcast) Len(room string) int {
+	return len(b.rooms)
+}
+
 func (b broadcast) onmessage(channel string, data []byte) error {
   pieces := strings.Split(channel, "#");
   uid := pieces[len(pieces) - 1]
